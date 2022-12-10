@@ -1,0 +1,17 @@
+Given information is that the service has 100 APIs and 1000 users, meaning that there are around 1 million API requests per day
+
+The way that I would store the data would be in 2 different tables.
+
+One consisting of all the APIs and one of all the users.
+
+Connections would be made from table to table, with the number of that API call that the user made.
+
+Every time an APi is made, every detail such as API name, IP, time stamp, endpoint, user credentials, the response body, request body and user ID. There can be a status column as well denoted whether the API went through or failed.
+
+Every time an API call is received, a load balancer enters the necessary information into this table and the status of the API is changed.
+
+Before sending the API back to the user, the response body and status are updated before being sent to the user.
+
+If there is any error, the status is 'Error encountered' else it is 'completed'.
+
+This current schema will ensure that we can track usage across time and see the error rate as well as requested.
